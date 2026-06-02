@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/global.css">
+    <link rel="stylesheet" href="./style/header.css">
+    <link rel="stylesheet" href="./style/chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
+    <title>Modelo OSI - Chat</title>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <img src="./assets/osi_model.png" alt="Modelo OSI" class="header-photo">
+            <div class="header-text-group">
+                <p class="title">Módulo de Chat - Camada 7</p>
+                <p class="user">Aguardando login...</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-body">
+        <form class="chat-form">
+            <h2 class="form-title">Simulador de Chat</h2>
+            
+            <div class="form-group">
+                <label for="chat-usuario">Nome de Usuário:</label>
+                <input type="text" id="chat-usuario" class="input-field" placeholder="Seu apelido..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="chat-mensagem-preview">Mensagem Cadastrada:</label>
+                <input type="text" id="chat-mensagem-preview" class="input-field disabled-input" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="chat-protocolo">Protocolo:</label>
+                <input type="text" id="chat-protocolo" class="input-field disabled-input" value="CHAT" readonly>
+            </div>
+
+            <button type="submit" class="request-btn email-submit-btn">Transmitir Mensagem</button>
+            <a href="index.html" style="text-align: center; color: #eb5988; margin-top: 1rem;">Voltar ao início</a>
+        </form>
+
+        <pre id="output-json" class="hidden"></pre>
+    </main>
+
+    <script src="./script/global.js"></script>
+    <script src="./script/chat.js"></script>
+</body>
+</html>

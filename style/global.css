@@ -1,0 +1,49 @@
+.hidden {
+    display: none !important;
+}
+
+html {
+  font-family: "Average Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* --- CONFIGURAÇÃO GLOBAL DO OUTPUT DE CÓDIGO (COMPARTILHADO) --- */
+#output-json {
+    background-color: #1e1e1e; /* Fundo escuro estilo VS Code */
+    color: #d4d4d4; 
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 450px; /* Limite seguro padrão para os formulários */
+    box-sizing: border-box;
+    white-space: pre-wrap; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: left;
+}
+
+/* Garante que na tela de e-mail ele se ajuste ao tamanho ligeiramente maior do form */
+.email-form + #output-json {
+    max-width: 500px;
+}
+
+/* --- HIGHLIGHT DE CORES DO CÓDIGO --- */
+#output-json .keyword {
+    color: #569cd6; /* Azul para palavras-chave */
+}
+
+#output-json .variable {
+    color: #4fc1ff; /* Azul claro para o nome do objeto */
+}
+
+#output-json .property {
+    color: #9cdcfe; /* Ciano para as chaves/atributos */
+}
+
+#output-json .string {
+    color: #ce9178; /* Laranja/Marrom claro para os valores criptografados */
+}

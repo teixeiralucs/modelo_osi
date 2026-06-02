@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/global.css">
+    <link rel="stylesheet" href="./style/header.css">
+    <link rel="stylesheet" href="./style/arquivos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
+    <title>Modelo OSI - Transferência de Arquivos</title>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <img src="./assets/osi_model.png" alt="Modelo OSI" class="header-photo">
+            <div class="header-text-group">
+                <p class="title">Módulo de Arquivos - Camada 7</p>
+                <p class="user">Sessão FTP/FILE</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-body">
+        <form class="arquivos-form">
+            <h2 class="form-title">Simulador de Upload</h2>
+            
+            <div class="form-group">
+                <label for="arq-remetente">Remetente (Usuário):</label>
+                <input type="text" id="arq-remetente" class="input-field" placeholder="Seu nome ou credencial..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="arq-nome">Nome do Arquivo Detectado:</label>
+                <input type="text" id="arq-nome-preview" class="input-field disabled-input" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="arq-formato">Formato/Extensão:</label>
+                <input type="text" id="arq-formato-preview" class="input-field disabled-input" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="arq-protocolo">Protocolo:</label>
+                <input type="text" id="arq-protocolo" class="input-field disabled-input" value="FTP" readonly>
+            </div>
+
+            <button type="submit" class="request-btn email-submit-btn">Transmitir Arquivo</button>
+            <a href="index.html" style="text-align: center; color: #eb5988; margin-top: 1rem;">Voltar ao início</a>
+        </form>
+
+        <pre id="output-json" class="hidden"></pre>
+    </main>
+
+    <script src="./script/global.js"></script>
+    <script src="./script/arquivos.js"></script>
+</body>
+</html>

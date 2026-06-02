@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/global.css">
+    <link rel="stylesheet" href="./style/header.css">
+    <link rel="stylesheet" href="./style/email.css">
+    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
+    <title>Modelo OSI - SMTP E-mail</title>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <img src="./assets/osi_model.png" alt="Modelo OSI" class="header-photo">
+            <div class="header-text-group">
+                <p class="title">Módulo SMTP - Camada 7</p>
+                <p class="user">Sessão de E-mail</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-body">
+        <form class="email-form">
+            <h2 class="form-title">Simulador de Envio (SMTP)</h2>
+            
+            <div class="form-group">
+                <label for="remetente">Remetente (From):</label>
+                <input type="email" id="remetente" class="input-field" placeholder="exemplo@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="destinatario">Destinatário (To):</label>
+                <input type="email" id="destinatario" class="input-field" placeholder="destino@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="assunto">Assunto (Subject):</label>
+                <input type="text" id="assunto" class="input-field" placeholder="Assunto do e-mail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="corpo">Corpo da Mensagem:</label>
+                <textarea id="corpo" class="input-field textarea-field" placeholder="Escreva sua mensagem aqui..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="protocolo">Protocolo:</label>
+                <input type="text" id="protocolo" class="input-field disabled-input" value="SMTP" readonly>
+            </div>
+
+            <button type="submit" class="request-btn email-submit-btn">Enviar E-mail</button>
+            <a href="index.html" style="text-align: center; color: #eb5988; margin-top: 1rem;">Voltar ao início</a>
+        </form>
+
+        <pre id="output-json" class="hidden"></pre>
+    </main>
+
+    <script src="./script/global.js"></script>
+    <script src="./script/email.js"></script>
+</body>
+</html>

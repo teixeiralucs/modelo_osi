@@ -1,0 +1,40 @@
+.main-header {
+    height: 7rem;
+    background-color: #EB5988;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem
+}
+
+.header-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-photo {
+    width: 7rem;
+    height: auto;
+    border-radius: 10px;
+}
+
+.title {
+    color: #fff;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.user {
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0;
+}

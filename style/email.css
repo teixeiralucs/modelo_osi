@@ -1,0 +1,81 @@
+.content-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Estrutura do Formulário SMTP */
+.email-form {
+    background-color: #fdfdfd;
+    border: 2px solid #eb5988;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.form-title {
+    color: #eb5988;
+    font-family: 'Average Sans', sans-serif;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    width: 100%;
+}
+
+.form-group label {
+    font-family: 'Average Sans', sans-serif;
+    color: #333;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Customização do tamanho da área do corpo do e-mail */
+.textarea-field {
+    height: 100px;
+    resize: none; /* Impede o usuário de arrastar e quebrar o layout */
+    font-family: sans-serif;
+}
+
+.disabled-input {
+    background-color: #f0f0f0;
+    color: #666;
+    border: 1px solid #ddd;
+    cursor: not-allowed;
+}
+
+.email-submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #eb5988;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s ease;
+}
+
+.email-submit-btn:hover {
+    background-color: #d44876;
+}

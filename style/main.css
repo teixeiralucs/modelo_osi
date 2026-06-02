@@ -1,0 +1,70 @@
+/* Container principal que empilha as linhas verticalmente */
+.content-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    padding: 2rem;
+    gap: 2.5rem;
+}
+
+/* Linha horizontal para o input de texto e o botão */
+.main-controls-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+}
+
+.input-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+}
+
+.input-field {
+    padding: 12px;
+    width: 100%;
+    max-width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Botão Enviar Inicial */
+.request-btn {
+    padding: 12px 24px;
+    background-color: #fff;
+    color: #eb5988;
+    border: 1px solid #eb5988;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Classe ativada via JS quando o usuário digita algo */
+.request-btn.active {
+    background-color: #eb598781;
+    color: white;
+    border-color: transparent;
+}
+
+.request-btn:hover {
+    background-color: #eb5987c2;
+    color: white;
+}
+
+/* H1 que mostra o resultado do protocolo detectado */
+.protocol-response {
+    text-align: center;
+    color: #eb5988;
+    font-family: 'Average Sans', sans-serif;
+    font-size: 2.2rem;
+    margin-top: 1rem;
+    min-height: 3rem;
+}
