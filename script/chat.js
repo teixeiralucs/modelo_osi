@@ -19,7 +19,6 @@ chatForm.addEventListener('submit', (event) => {
 
     if (userDisplay) userDisplay.textContent = `Usuário: ${usuarioDigitado}`;
 
-    // CORRIGIDO: de 'mensajeCriptografada' para 'mensagemCriptografada'
     const chatData = {
         tipo: 'chat',
         usuario: usuarioDigitado,
