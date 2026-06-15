@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+    <line x1="6" y1="18" x2="6.01" y2="18"></line>
+    <line x1="10" y1="18" x2="10.01" y2="18"></line>
+    <line x1="14" y1="18" x2="14.01" y2="18"></line>
+    <line x1="18" y1="18" x2="18.01" y2="18"></line>
+    <path d="M12 14v-4"></path>
+    <path d="M8 10a4 4 0 0 1 8 0"></path>
+    <path d="M5 7a8 8 0 0 1 14 0"></path>
+    <!-- Cross indicating it's broken -->
+    <line x1="3" y1="3" x2="21" y2="21" stroke="#dc3545" stroke-width="3" opacity="0.8"></line>
+    <line x1="21" y1="3" x2="3" y2="21" stroke="#dc3545" stroke-width="3" opacity="0.8"></line>
+</svg>

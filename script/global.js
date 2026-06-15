@@ -60,5 +60,19 @@ ${linhasCorpo.join(',\n')}
 };`;
 
     outputArea.innerHTML = codigoHTML;
+    
+    // Adiciona o botão para simular a rede abaixo do código JSON
+    const btnSimular = document.createElement('button');
+    btnSimular.className = 'request-btn';
+    btnSimular.style.marginTop = '1rem';
+    btnSimular.style.display = 'block';
+    btnSimular.style.width = '100%';
+    btnSimular.textContent = 'Simular Roteamento na Rede';
+    btnSimular.addEventListener('click', () => {
+        // Redirecionar para a página de rede e carregar a simulação
+        window.location.href = 'network.html';
+    });
+    
+    outputArea.appendChild(btnSimular);
     outputArea.classList.remove('hidden');
 }

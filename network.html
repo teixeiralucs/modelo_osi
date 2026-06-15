@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/global.css">
+    <link rel="stylesheet" href="./style/header.css">
+    <link rel="stylesheet" href="./style/network.css">
+    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
+    <title>Modelo OSI - Simulação de Rede</title>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <img src="./assets/osi_model.png" alt="Modelo OSI" class="header-photo">
+            <div class="header-text-group">
+                <p class="title">Camada 3 - Roteamento de Rede</p>
+                <p class="user">Algoritmo de Dijkstra</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-body">
+        <div class="network-container">
+            <div class="network-sidebar">
+                <h2>Log de Roteamento</h2>
+                <div id="route-log" class="log-area">
+                    <p>Iniciando simulação...</p>
+                </div>
+                <button id="restart-btn" class="request-btn" style="width: 100%; margin-top: 20px; display: none;">Reiniciar Simulação</button>
+                <a href="index.html" class="back-link">Voltar ao início</a>
+            </div>
+            
+            <div class="canvas-wrapper">
+                <canvas id="network-canvas" width="800" height="600"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script src="./script/points.js"></script>
+    <script src="./script/network.js"></script>
+</body>
+</html>
