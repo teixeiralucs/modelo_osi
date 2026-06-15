@@ -17,10 +17,10 @@ emailForm.addEventListener('submit', (event) => {
     const corpoOriginal = document.querySelector('#corpo').value;
     const protocolo = document.querySelector('#protocolo').value;
 
-    // Criptografia usando a função herdada do global.js
-    const remetenteCriptografado = criptografarCesar(remetenteOriginal);
-    const destinatarioCriptografado = criptografarCesar(destinatarioOriginal);
-    const corpoCriptografado = criptografarCesar(corpoOriginal);
+    // Criptografia removida: a criptografia acontecerá na Camada de Apresentação (JWT)
+    const remetenteCriptografado = remetenteOriginal;
+    const destinatarioCriptografado = destinatarioOriginal;
+    const corpoCriptografado = corpoOriginal;
 
     const agora = new Date();
     const timeStampFormatado = agora.toLocaleTimeString('pt-BR') + ' ' + agora.toLocaleDateString('pt-BR');

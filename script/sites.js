@@ -5,37 +5,58 @@ const userDisplay = document.querySelector('.user');
 const urlCadastrada = localStorage.getItem('texto_inicial') || "www.ifpe.edu.br";
 document.querySelector('#web-host-preview').value = urlCadastrada;
 
-sitesForm.addEventListener('submit', (event) => {
+sitesForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const usuarioDigitado = document.querySelector('#web-usuario').value;
     const metodoHttp = document.querySelector('#web-metodo').value;
     const protocoloHttp = document.querySelector('#web-protocolo').value;
 
-    // Criptografia usando a função do global.js nos campos que você pediu
-    const hostCriptografado = criptografarCesar(urlCadastrada);
-    const usuarioCriptografado = criptografarCesar(usuarioDigitado);
+    let hostResolvido = urlCadastrada;
+
+    // Se não iniciar com www. nem http, tenta resolver o DNS para capturar o IP real (Registro A)
+    if (!urlCadastrada.startsWith('www.') && !urlCadastrada.startsWith('http')) {
+        try {
+            document.querySelector('#web-metodo').value = "Resolvendo DNS...";
+            const response = await fetch(`https://dns.google/resolve?name=${urlCadastrada}&type=A`);
+            const data = await response.json();
+            
+            if (data.Answer && data.Answer.length > 0) {
+                // Pegar o primeiro registro A encontrado
+                const ip = data.Answer.find(a => a.type === 1)?.data;
+                if (ip) {
+                    hostResolvido = ip;
+                    console.log(`DNS Resolvido: ${urlCadastrada} -> ${ip}`);
+                }
+            }
+            document.querySelector('#web-metodo').value = metodoHttp; // Retorna ao normal
+        } catch (error) {
+            console.error("Falha ao resolver DNS:", error);
+            document.querySelector('#web-metodo').value = metodoHttp;
+        }
+    }
+
+    // Criptografia removida: a criptografia acontecerá na Camada de Apresentação (JWT)
+    const hostCriptografado = hostResolvido;
+    const usuarioCriptografado = usuarioDigitado;
 
     const agora = new Date();
     const timeStampFormatado = agora.toLocaleTimeString('pt-BR') + ' ' + agora.toLocaleDateString('pt-BR');
 
     if (userDisplay) userDisplay.textContent = `Usuário: ${usuarioDigitado}`;
 
-    // Objeto 2: REQUISIÇÃO SITE estruturado rigorosamente conforme o slide
+    // Objeto da Camada de Aplicação
     const requisicaoSite = {
         tipo: 'http_request',
         metodo: metodoHttp,
-        hostIP: hostCriptografado,     // Criptografado
+        hostIP: hostCriptografado,
         protocolo: protocoloHttp,
-        usuario: usuarioCriptografado, // Criptografado
+        usuario: usuarioCriptografado,
         timestamp: timeStampFormatado
     };
 
-    // Salva no LocalStorage
-    localStorage.setItem(`http_envio_${Date.now()}`, JSON.stringify(requisicaoSite));
-
-    // Invoca o renderizador unificado do global.js (vai criar a const requisicaoSite = { ... })
-    exibirCodigoEmTela('requisicaoSite', requisicaoSite);
+    // Invoca o renderizador unificado informando a camada atual
+    exibirCodigoEmTela('requisicaoSite', requisicaoSite, 'aplicacao');
 
     // Limpa o campo do usuário para novos envios
     document.querySelector('#web-usuario').value = "";

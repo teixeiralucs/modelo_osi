@@ -22,6 +22,7 @@ html {
     max-width: 450px; /* Limite seguro padrão para os formulários */
     box-sizing: border-box;
     white-space: pre-wrap; 
+    word-break: break-all;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     text-align: left;
 }

@@ -11,8 +11,8 @@ chatForm.addEventListener('submit', (event) => {
 
     const usuarioDigitado = document.querySelector('#chat-usuario').value;
     
-    // Executa a criptografia puxando a função definida lá no global.js
-    const mensagemCriptografada = criptografarCesar(textoMensagem); 
+    // Criptografia removida: a criptografia acontecerá na Camada de Apresentação (JWT)
+    const mensagemCriptografada = textoMensagem; 
 
     const agora = new Date();
     const timeStampFormatado = agora.toLocaleTimeString('pt-BR') + ' ' + agora.toLocaleDateString('pt-BR');

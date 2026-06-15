@@ -190,13 +190,18 @@ function animatePacket() {
 }
 
 function initSimulation() {
+    // Aleatoriza os pesos das arestas entre 1 e 10
+    networkEdges.forEach(edge => {
+        edge.weight = Math.floor(Math.random() * 10) + 1;
+    });
+
     drawNetwork();
-    logMessage("Grafo da rede carregado.");
+    logMessage("Grafo da rede ampliado carregado com pesos aleatórios.");
     
     setTimeout(() => {
-        logMessage("Calculando melhor rota (Dijkstra) de A para H...");
+        logMessage("Calculando melhor rota (Dijkstra) de A para M...");
         const startId = 'A';
-        const endId = 'H';
+        const endId = 'M';
         
         currentPath = dijkstra(networkNodes, networkEdges, startId, endId);
         
