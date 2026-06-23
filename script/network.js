@@ -119,28 +119,36 @@ function drawNetwork() {
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // Desenhar peso da aresta
-        const midX = (sourceNode.x + targetNode.x) / 2;
-        const midY = (sourceNode.y + targetNode.y) / 2;
-        
-        ctx.fillStyle = 'rgba(0, 210, 255, 0.8)';
-        ctx.font = '14px monospace';
-        ctx.fillText(edge.weight, midX, midY - 10);
+        // Desenhar peso da aresta (removido para não poluir a tela com 100 roteadores)
+        // const midX = (sourceNode.x + targetNode.x) / 2;
+        // const midY = (sourceNode.y + targetNode.y) / 2;
+        // ctx.fillStyle = 'rgba(0, 210, 255, 0.8)';
+        // ctx.font = '14px monospace';
+        // ctx.fillText(edge.weight, midX, midY - 10);
     });
 
     // Desenhar nós
     networkNodes.forEach(node => {
-        const img = node.active ? imgRouter : imgRouterBroken;
-        const imgWidth = 40;
-        const imgHeight = 40;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = node.active ? '#28a745' : '#dc3545'; // Verde para online, vermelho para offline
+        ctx.fill();
         
-        ctx.drawImage(img, node.x - imgWidth / 2, node.y - imgHeight / 2, imgWidth, imgHeight);
+        // Destacar Origem e Destino com uma borda
+        if (node.label === 'Origem' || node.label === 'Destino') {
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+        ctx.closePath();
 
-        // Texto
-        ctx.fillStyle = node.active ? '#fff' : '#dc3545';
-        ctx.font = '12px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(node.label, node.x, node.y + 30);
+        // Texto (mostrar apenas para Origem e Destino para não poluir visualmente)
+        if (node.label) {
+            ctx.fillStyle = '#fff';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(node.label, node.x, node.y + 20);
+        }
     });
 }
 
@@ -190,6 +198,13 @@ function animatePacket() {
 }
 
 function initSimulation() {
+    // Aleatoriza os roteadores online/offline a cada simulação
+    networkNodes.forEach(node => {
+        if (node.label !== 'Origem' && node.label !== 'Destino') {
+            node.active = Math.random() > 0.1; // 10% de chance de falhar
+        }
+    });
+
     // Aleatoriza os pesos das arestas entre 1 e 10
     networkEdges.forEach(edge => {
         edge.weight = Math.floor(Math.random() * 10) + 1;
@@ -199,9 +214,9 @@ function initSimulation() {
     logMessage("Grafo da rede ampliado carregado com pesos aleatórios.");
     
     setTimeout(() => {
-        logMessage("Calculando melhor rota (Dijkstra) de A para M...");
-        const startId = 'A';
-        const endId = 'M';
+        logMessage("Calculando melhor rota (Dijkstra) de Origem para Destino...");
+        const startId = 'R0';
+        const endId = 'R99';
         
         currentPath = dijkstra(networkNodes, networkEdges, startId, endId);
         

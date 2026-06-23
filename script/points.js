@@ -1,48 +1,55 @@
-// Definição do grafo da rede com grid ampliado
-const networkNodes = [
-    { id: 'A', x: 50, y: 300, active: true, label: 'Origem' },
-    { id: 'B', x: 200, y: 100, active: true, label: 'Roteador 1' },
-    { id: 'C', x: 200, y: 300, active: false, label: 'Roteador 2 (Falha)' }, // Falha 1
-    { id: 'D', x: 200, y: 500, active: true, label: 'Roteador 3' },
-    { id: 'E', x: 350, y: 100, active: true, label: 'Roteador 4' },
-    { id: 'F', x: 350, y: 300, active: true, label: 'Roteador 5' }, 
-    { id: 'G', x: 350, y: 500, active: true, label: 'Roteador 6' },
-    { id: 'H', x: 500, y: 100, active: false, label: 'Roteador 7 (Falha)' }, // Falha 2
-    { id: 'I', x: 500, y: 300, active: true, label: 'Roteador 8' },
-    { id: 'J', x: 500, y: 500, active: true, label: 'Roteador 9' },
-    { id: 'K', x: 650, y: 200, active: false, label: 'Roteador 10 (Falha)' }, // Falha 3
-    { id: 'L', x: 650, y: 400, active: true, label: 'Roteador 11' },
-    { id: 'M', x: 750, y: 300, active: true, label: 'Destino' }
-];
+const networkNodes = [];
+const networkEdges = [];
 
-// As arestas com pesos base (que serão sobrescritos aleatoriamente a cada simulação)
-const networkEdges = [
-    { source: 'A', target: 'B', weight: 1 },
-    { source: 'A', target: 'C', weight: 1 },
-    { source: 'A', target: 'D', weight: 1 },
-    { source: 'B', target: 'E', weight: 1 },
-    { source: 'B', target: 'C', weight: 1 },
-    { source: 'C', target: 'E', weight: 1 },
-    { source: 'C', target: 'F', weight: 1 },
-    { source: 'C', target: 'G', weight: 1 },
-    { source: 'C', target: 'D', weight: 1 },
-    { source: 'D', target: 'G', weight: 1 },
-    { source: 'E', target: 'H', weight: 1 },
-    { source: 'E', target: 'F', weight: 1 },
-    { source: 'F', target: 'H', weight: 1 },
-    { source: 'F', target: 'I', weight: 1 },
-    { source: 'F', target: 'J', weight: 1 },
-    { source: 'F', target: 'G', weight: 1 },
-    { source: 'G', target: 'J', weight: 1 },
-    { source: 'H', target: 'K', weight: 1 },
-    { source: 'H', target: 'I', weight: 1 },
-    { source: 'I', target: 'K', weight: 1 },
-    { source: 'I', target: 'L', weight: 1 },
-    { source: 'I', target: 'J', weight: 1 },
-    { source: 'J', target: 'L', weight: 1 },
-    { source: 'K', target: 'M', weight: 1 },
-    { source: 'L', target: 'M', weight: 1 }
-];
+const cols = 10;
+const rows = 10;
+const startX = 60;
+const startY = 60;
+const spacingX = 75;
+const spacingY = 50;
+
+let idCounter = 0;
+
+for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+        const id = 'R' + idCounter;
+        // Cerca de 10% dos roteadores falham
+        const active = Math.random() > 0.1;
+        
+        let label = '';
+        if (idCounter === 0) label = 'Origem';
+        else if (idCounter === 99) label = 'Destino';
+        
+        networkNodes.push({
+            id: id,
+            x: startX + c * spacingX,
+            y: startY + r * spacingY,
+            active: active,
+            label: label
+        });
+        idCounter++;
+    }
+}
+
+// Garantir que Origem e Destino estejam ativos
+networkNodes[0].active = true;
+networkNodes[99].active = true;
+
+// Criar as arestas (grid)
+for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+        const currentId = 'R' + (r * cols + c);
+        
+        // Conexão com o vizinho da direita
+        if (c < cols - 1) {
+            networkEdges.push({ source: currentId, target: 'R' + (r * cols + c + 1), weight: 1 });
+        }
+        // Conexão com o vizinho de baixo
+        if (r < rows - 1) {
+            networkEdges.push({ source: currentId, target: 'R' + ((r + 1) * cols + c), weight: 1 });
+        }
+    }
+}
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { networkNodes, networkEdges };
